@@ -2,7 +2,7 @@
 
 Android Studio is a terrible overloaded mess of unneeded things. Let's stop wasting our time and start using precise and clean command line tools. This template is largely inspired by this [https://medium.com/@authmane512/how-to-build-an-apk-from-command-line-without-ide-7260e1e22676](tutorial).
 
-<img src="screenshot.png"/>
+<img width="150px" src="screenshot.png"/>
 
 ## Prerequisites
 
