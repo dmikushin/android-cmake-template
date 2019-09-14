@@ -15,12 +15,14 @@ set(ANDROID_BUIDTOOLS "/opt/android-sdk/build-tools/28.0.0")
 
 set(AAPT "${ANDROID_BUIDTOOLS}/aapt")
 
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/AndroidManifest.xml.in ${CMAKE_CURRENT_BINARY_DIR}/AndroidManifest.xml @ONLY)
+
 file(GLOB SRC ${CMAKE_CURRENT_SOURCE_DIR}/src/${JAVA_PROJECT_PATH}/*.java)
 list(REMOVE_ITEM SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/${JAVA_PROJECT_PATH}/R.java")
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${JAVA_PROJECT_PATH}/R.java
 	DEPENDS ${SRC}
-	COMMAND ${AAPT} package -f -m -J ${CMAKE_CURRENT_BINARY_DIR}/ -M ${CMAKE_CURRENT_SOURCE_DIR}/AndroidManifest.xml -S ${CMAKE_CURRENT_SOURCE_DIR}/res -I ${ANDROID_PLATFORM}/android.jar
+	COMMAND ${AAPT} package -f -m -J ${CMAKE_CURRENT_BINARY_DIR}/ -M ${CMAKE_CURRENT_BINARY_DIR}/AndroidManifest.xml -S ${CMAKE_CURRENT_SOURCE_DIR}/res -I ${ANDROID_PLATFORM}/android.jar
 	COMMENT "Creating R.java")
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/bin/classes.dex
@@ -33,7 +35,7 @@ add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/bin/classes.dex
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/bin/${JAVA_PROJECT_NAME}.unaligned.apk
 	DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/bin/classes.dex
-	COMMAND ${AAPT} package -f -m -F ${CMAKE_CURRENT_BINARY_DIR}/bin/${JAVA_PROJECT_NAME}.unaligned.apk -M ${CMAKE_CURRENT_SOURCE_DIR}/AndroidManifest.xml -S ${CMAKE_CURRENT_SOURCE_DIR}/res -I ${ANDROID_PLATFORM}/android.jar
+	COMMAND ${AAPT} package -f -m -F ${CMAKE_CURRENT_BINARY_DIR}/bin/${JAVA_PROJECT_NAME}.unaligned.apk -M ${CMAKE_CURRENT_BINARY_DIR}/AndroidManifest.xml -S ${CMAKE_CURRENT_SOURCE_DIR}/res -I ${ANDROID_PLATFORM}/android.jar
 	COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_BINARY_DIR}/bin/classes.dex ${CMAKE_CURRENT_BINARY_DIR}/classes.dex
 	COMMAND ${AAPT} add ${CMAKE_CURRENT_BINARY_DIR}/bin/${JAVA_PROJECT_NAME}.unaligned.apk classes.dex
 	WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}

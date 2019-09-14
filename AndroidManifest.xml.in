@@ -1,7 +1,7 @@
 <?xml version='1.0'?>
-<manifest xmlns:a='http://schemas.android.com/apk/res/android' package='com.android.cmake.template' a:versionCode='0' a:versionName='0'>
+<manifest xmlns:a='http://schemas.android.com/apk/res/android' package='@JAVA_PROJECT_NAME@' a:versionCode='0' a:versionName='0'>
     <application a:label='A Hello Android'>
-        <activity a:name='com.android.cmake.template.MainActivity'>
+        <activity a:name='@JAVA_PROJECT_NAME@.MainActivity'>
              <intent-filter>
                 <category a:name='android.intent.category.LAUNCHER'/>
                 <action a:name='android.intent.action.MAIN'/>
