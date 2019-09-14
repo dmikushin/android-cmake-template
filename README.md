@@ -9,7 +9,7 @@ Android Studio is a terrible overloaded mess of unneeded things. Let's stop wast
 Install JDK and ADB packages:
 
 ```
-sudo apt-get install openjdk-8-jdk-headless adb aapt
+sudo apt-get install openjdk-8-jdk-headless adb
 ```
 
 Download and install Android tools, build-tools and platform SDK to /opt/android-sdk:
@@ -23,15 +23,12 @@ sudo PATH=/usr/lib/jvm/java-8-openjdk-amd64/bin:$PATH /opt/android-sdk/tools/bin
 sudo PATH=/usr/lib/jvm/java-8-openjdk-amd64/bin:$PATH /opt/android-sdk/tools/bin/sdkmanager "build-tools;28.0.0"
 ```
 
-## Generate Signing Key
-
-```
-keytool -genkeypair -validity 365 -keystore mykey.keystore -keyalg RSA -keysize 2048
-```
-
 ## Building
 
 ```
+mkdir build
+cd build
+cmake ..
 make
 ```
 
@@ -40,6 +37,7 @@ make
 Switch your cell phone to Developer mode with USB debugging and USB package installation enabled as shown e.g. [here](https://www.syncios.com/android/how-to-debug-xiaomi-mi-max-mix.html). Connect with a USB cable and roll the application onto it:
 
 ```
-make test
+cd build
+make adb
 ```
 

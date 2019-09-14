@@ -1,4 +1,4 @@
-package com.example.helloandroid;
+package com.android.cmake.template;
 
 import android.app.Activity;
 import android.os.Bundle;
