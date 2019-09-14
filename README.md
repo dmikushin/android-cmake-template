@@ -37,6 +37,8 @@ make
 
 ## Testing
 
+Switch your cell phone to Developer mode with USB debugging and USB package installation enabled as shown e.g. [here](https://www.syncios.com/android/how-to-debug-xiaomi-mi-max-mix.html). Connect with a USB cable and roll the application onto it:
+
 ```
 make test
 ```
