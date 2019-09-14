@@ -8,4 +8,5 @@
              </intent-filter>
         </activity>
     </application>
+    <uses-sdk a:minSdkVersion="22"/>
 </manifest>
